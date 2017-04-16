@@ -72,6 +72,9 @@ func gridExamples() []*Example {
 		&Example{
 			View: grid3(),
 		},
+		&Example{
+			View: grid4(),
+		},
 	}
 }
 
@@ -211,6 +214,31 @@ func grid3() *grid.Grid {
 				Mode:     grid.Default,
 				Size:     2,
 				Children: cellChild2(vecty.Text("2")),
+			},
+		},
+	}
+}
+
+func grid4() *grid.Grid {
+	return &grid.Grid{
+		Cells: []*grid.Cell{
+			{
+				Mode:       grid.Default | grid.Tablet,
+				Size:       6,
+				TabletSize: 8,
+				Children:   cellChild2(vecty.Text("6 (8 tablet)")),
+			},
+			{
+				Mode:       grid.Default | grid.Tablet,
+				Size:       4,
+				TabletSize: 6,
+				Children:   cellChild2(vecty.Text("4 (6 tablet)")),
+			},
+			{
+				Mode:      grid.Default | grid.Phone,
+				Size:      2,
+				PhoneSIze: 4,
+				Children:  cellChild2(vecty.Text("2 (4 phone)")),
 			},
 		},
 	}
