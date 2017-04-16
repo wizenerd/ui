@@ -77,7 +77,7 @@ func cellChild(m ...vecty.MarkupOrComponentOrHTML) vecty.MarkupOrComponentOrHTML
 	v = append(v, style.Height(style.Px(50)))
 	v = append(v, style.Color("white"))
 	v = append(v, vecty.Style("background-color", "#BDBDBD"))
-	v = append(v, vecty.Style("box-sizingr", "border-box"))
+	v = append(v, vecty.Style("box-sizing", "border-box"))
 	v = append(v, vecty.Style("padding-leftr", string(style.Px(8))))
 	v = append(v, vecty.Style("padding-top", string(style.Px(4))))
 	return vecty.List(v)
