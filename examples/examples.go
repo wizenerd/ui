@@ -3,6 +3,7 @@ package examples
 import (
 	"github.com/gopherjs/vecty"
 	"github.com/gopherjs/vecty/elem"
+	"github.com/gopherjs/vecty/prop"
 	"github.com/wizenerd/grid"
 )
 
@@ -27,7 +28,9 @@ func (e *Example) Render() *vecty.HTML {
 						Mode: grid.Default,
 						Size: 12,
 						Children: elem.Preformatted(
-							elem.Code(c, vecty.Text(e.Code)),
+							elem.Code(
+								prop.Class("language-go"),
+								vecty.Text(e.Code)),
 						),
 					},
 				},
