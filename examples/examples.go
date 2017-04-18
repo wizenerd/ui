@@ -27,7 +27,7 @@ func (e *Example) Render() *vecty.HTML {
 						Mode: grid.Default,
 						Size: 12,
 						Children: elem.Code(
-							c, elem.Code(elem.Preformatted(vecty.Text(e.Code))),
+							c, elem.Preformatted(vecty.Text(e.Code)),
 						),
 					},
 				},
