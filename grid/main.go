@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gopherjs/vecty"
-	"github.com/gopherjs/vecty/elem"
 	"github.com/gopherjs/vecty/style"
 	"github.com/wizenerd/color"
 	"github.com/wizenerd/grid"
@@ -13,27 +12,8 @@ func main() {
 	vecty.AddStylesheet("https://fonts.googleapis.com/css?family=Roboto:400,300,500|Roboto+Mono|Roboto+Condensed:400,700&subset=latin,latin-ext")
 	vecty.AddStylesheet("https://fonts.googleapis.com/icon?family=Material+Icons")
 	vecty.AddStylesheet("https://code.getmdl.io/1.3.0/material.teal-red.min.css")
-	a := New(gridExamples()...)
+	a := examples.New(gridExamples()...)
 	vecty.RenderBody(a)
-}
-
-type App struct {
-	vecty.Core
-	grids []*examples.Example
-}
-
-func New(e ...*examples.Example) *App {
-	return &App{
-		grids: e,
-	}
-}
-
-func (a *App) Render() *vecty.HTML {
-	var v []vecty.MarkupOrComponentOrHTML
-	for _, e := range a.grids {
-		v = append(v, e)
-	}
-	return elem.Body(v...)
 }
 
 func gridExamples() []*examples.Example {

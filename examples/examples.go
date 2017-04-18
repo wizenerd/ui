@@ -35,3 +35,22 @@ func (e *Example) Render() *vecty.HTML {
 		),
 	)
 }
+
+type App struct {
+	vecty.Core
+	grids []*Example
+}
+
+func New(e ...*Example) *App {
+	return &App{
+		grids: e,
+	}
+}
+
+func (a *App) Render() *vecty.HTML {
+	var v []vecty.MarkupOrComponentOrHTML
+	for _, e := range a.grids {
+		v = append(v, e)
+	}
+	return elem.Body(v...)
+}
