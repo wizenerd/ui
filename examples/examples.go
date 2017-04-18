@@ -15,6 +15,7 @@ type Example struct {
 func (e *Example) Render() *vecty.HTML {
 	c := make(vecty.ClassMap)
 	c["language-go"] = true
+
 	return elem.Div(
 		elem.Div(
 			e.View,
@@ -26,7 +27,7 @@ func (e *Example) Render() *vecty.HTML {
 						Mode: grid.Default,
 						Size: 12,
 						Children: elem.Code(
-							c, vecty.Text(e.Code),
+							c, elem.Code(elem.Preformatted(vecty.Text(e.Code))),
 						),
 					},
 				},
