@@ -6,6 +6,7 @@ import (
 	"github.com/gopherjs/vecty/style"
 	"github.com/wizenerd/color"
 	"github.com/wizenerd/grid"
+	"github.com/wizenerd/ui/examples"
 )
 
 func main() {
@@ -18,10 +19,10 @@ func main() {
 
 type App struct {
 	vecty.Core
-	grids []*Example
+	grids []*examples.Example
 }
 
-func New(e ...*Example) *App {
+func New(e ...*examples.Example) *App {
 	return &App{
 		grids: e,
 	}
@@ -35,44 +36,19 @@ func (a *App) Render() *vecty.HTML {
 	return elem.Body(v...)
 }
 
-type Example struct {
-	vecty.Core
-	View vecty.MarkupOrComponentOrHTML
-	Code string
-}
-
-func (e *Example) Render() *vecty.HTML {
-	return elem.Div(
-		elem.Div(
-			e.View,
-		),
-		elem.Div(
-			&grid.Grid{
-				Cells: []*grid.Cell{
-					{
-						Mode:     grid.Default,
-						Size:     12,
-						Children: elem.Code(elem.Preformatted(vecty.Text(e.Code))),
-					},
-				},
-			},
-		),
-	)
-}
-
-func gridExamples() []*Example {
-	return []*Example{
-		&Example{
+func gridExamples() []*examples.Example {
+	return []*examples.Example{
+		&examples.Example{
 			View: grid1(),
-			Code: grid1Txt,
+			Code: "84b95a945c9e4346553b1092e334f9a4",
 		},
-		&Example{
+		&examples.Example{
 			View: grid2(),
 		},
-		&Example{
+		&examples.Example{
 			View: grid3(),
 		},
-		&Example{
+		&examples.Example{
 			View: grid4(),
 		},
 	}
