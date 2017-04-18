@@ -40,7 +40,7 @@ func gridExamples() []*examples.Example {
 	return []*examples.Example{
 		&examples.Example{
 			View: grid1(),
-			Code: "84b95a945c9e4346553b1092e334f9a4",
+			Code: grid1Txt,
 		},
 		&examples.Example{
 			View: grid2(),
@@ -148,7 +148,86 @@ func grid1() *grid.Grid {
 }
 
 var grid1Txt = `
+var cellColor = color.Class(color.Blue, color.A400)
 
+func cellChild(m ...vecty.MarkupOrComponentOrHTML) vecty.MarkupOrComponentOrHTML {
+	var v []vecty.MarkupOrComponentOrHTML
+	v = append(v, m...)
+	v = append(v, style.Height(style.Px(50)))
+	v = append(v, style.Color("white"))
+	v = append(v, vecty.Style("background-color", "#BDBDBD"))
+	v = append(v, vecty.Style("box-sizing", "border-box"))
+	v = append(v, vecty.Style("padding-leftr", string(style.Px(8))))
+	v = append(v, vecty.Style("padding-top", string(style.Px(4))))
+	return vecty.List(v)
+}
+
+func grid1() *grid.Grid {
+	return &grid.Grid{
+		Cells: []*grid.Cell{
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+			{
+				Mode:     grid.Default,
+				Size:     1,
+				Children: cellChild(vecty.Text("1")),
+			},
+		},
+	}
+}
 `
 
 func grid2() *grid.Grid {
