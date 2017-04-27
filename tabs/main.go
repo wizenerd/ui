@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+
 	"github.com/gopherjs/vecty"
 	"github.com/gopherjs/vecty/elem"
 	"github.com/wizenerd/tabs"
@@ -9,20 +11,24 @@ import (
 func main() {
 	vecty.AddStylesheet("https://fonts.googleapis.com/css?family=Roboto:400,300,500|Roboto+Mono|Roboto+Condensed:400,700&subset=latin,latin-ext")
 	vecty.AddStylesheet("https://code.getmdl.io/1.3.0/material.teal-red.min.css")
-	vecty.RenderBody(&app{})
+	ctx, _ := context.WithCancel(context.Background())
+	// defer cancel()
+	a := newApp(ctx)
+	vecty.RenderBody(a)
 }
 
 type app struct {
 	vecty.Core
+	t *tabs.Tabs
 }
 
-func (app) Render() *vecty.HTML {
-	return elem.Body(
-		&tabs.Tabs{
-			IsJS:    true,
-			Rippled: true,
-			Panels:  panes()},
-	)
+func newApp(ctx context.Context) *app {
+	t := tabs.New(ctx)
+	t.Panels = panes()
+	return &app{t: t}
+}
+func (a *app) Render() *vecty.HTML {
+	return elem.Body(a.t)
 }
 
 var a1 = `
@@ -41,19 +47,19 @@ func panes() []*tabs.Panel {
 			ID:       "#about-panel",
 			Name:     "About the Beatles",
 			IsActive: true,
-			Children: vecty.List{
+			Children: elem.Div(
 				elem.Paragraph(
 					vecty.Text(a1),
 				),
 				elem.Paragraph(
 					vecty.Text(a2),
 				),
-			},
+			),
 		},
 		{
 			ID:   "#members-panel",
 			Name: "Members",
-			Children: vecty.List{
+			Children: elem.Div(
 				elem.Paragraph(vecty.Text("The Beatles' members were:")),
 				elem.UnorderedList(
 					vecty.List{
@@ -71,7 +77,7 @@ func panes() []*tabs.Panel {
 						),
 					},
 				),
-			},
+			),
 		},
 	}
 }
