@@ -1,8 +1,6 @@
 package main
 
 import (
-	"context"
-
 	"github.com/gopherjs/vecty"
 	"github.com/gopherjs/vecty/elem"
 	"github.com/wizenerd/tabs"
@@ -12,9 +10,7 @@ func main() {
 	vecty.AddStylesheet("https://fonts.googleapis.com/css?family=Roboto:400,300,500|Roboto+Mono|Roboto+Condensed:400,700&subset=latin,latin-ext")
 	vecty.AddStylesheet("https://fonts.googleapis.com/icon?family=Material+Icons")
 	vecty.AddStylesheet("https://code.getmdl.io/1.3.0/material.teal-red.min.css")
-	ctx, _ := context.WithCancel(context.Background())
-	// defer cancel()
-	a := newApp(ctx)
+	a := newApp()
 	vecty.RenderBody(a)
 }
 
@@ -23,8 +19,8 @@ type app struct {
 	t *tabs.Tabs
 }
 
-func newApp(ctx context.Context) *app {
-	t := tabs.New(ctx)
+func newApp() *app {
+	t := tabs.New()
 	t.IsJS = true
 	t.Rippled = true
 	t.Panels = panes()
