@@ -1,5 +1,5 @@
 
-all:grid/grid.js footer/footer.js icons/icons.js tabs/tabs.js
+all:grid/grid.js footer/footer.js icons/icons.js tabs/tabs.js layout/one/one.js
 grid/grid.js: grid/main.go
 	gopherjs build -m -o grid/grid.js github.com/wizenerd/ui/grid
 
@@ -11,3 +11,6 @@ icons/icons.js: icons/main.go
 
 tabs/tabs.js: tabs/main.go
 	gopherjs build -m -o tabs/tabs.js github.com/wizenerd/ui/tabs
+
+layout/one/one.js: layout/one/main.go
+	gopherjs build -m -o layout/one/one.js github.com/wizenerd/ui/layout/one
